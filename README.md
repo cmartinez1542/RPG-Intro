@@ -13,6 +13,7 @@ In all of these levels, the enemies will use state machines based loosely on the
 We also intend for Quintex to have a variety of attacks beyond just a sword swinging.
 
 Roles:
+
 Jackson: Boss level design and boss state machine/animation
 
 James: 
