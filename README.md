@@ -14,7 +14,12 @@ We also intend for Quintex to have a variety of attacks beyond just a sword swin
 
 Roles:
 Jackson: Boss level design and boss state machine/animation
+
 James: 
+
 Luis: Horde/Wave level (potentially special state machines for wave tactics?)
+
 Brian: 
+
 Carlos: Quintex controls/actions, character spawning and main menu
+
