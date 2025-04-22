@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -85,6 +86,21 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.LogError($"Animator assignment failed. Animator found: {animator != null}, Animator Controllers array length: {playerAnimatorControllers.Length}, Index: {index}");
+        }
+
+        if (SceneManager.GetActiveScene().name == "Boss_Level")
+        {
+            Boss_Movement boss = Object.FindFirstObjectByType<Boss_Movement>();
+            if (boss != null)
+            {
+                boss.m_player = playerInput.transform;
+                boss.m_playerRb = playerInput.GetComponent<Rigidbody2D>();
+                Debug.Log("Boss assigned player transform" + playerInput.transform.name);
+            }
+            else
+            {
+                Debug.LogWarning("Couldn't find the boss");
+            }
         }
     }
 }
