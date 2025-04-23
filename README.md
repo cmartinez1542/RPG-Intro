@@ -1,6 +1,6 @@
 Quintex Adventure
 
-Group Members: Jackson McCoy, James Burton, Luis Suarez, Brian Zavala, Carlos Martinez
+Group Members: Jackson McCoy, James Burton, Luis Suarez, Bryan Zavala, Carlos Martinez
 
 This game will feature four distinct levels, each with separate goals and unique enemies. The gameplay controls for the player will be relatively simple and generally related to the average top-down rpg, which is essentially what the game is.
 The story follows the knight Quintex, who will pass through the following levels:
@@ -20,7 +20,7 @@ James:
 
 Luis: Horde/Wave level (potentially special state machines for wave tactics?)
 
-Brian: 
+Bryan: Puzzle level design, basic AI enemies implementation, and combat system enhancement (improved player attack mechanics)
 
 Carlos: Quintex controls/actions, character spawning and main menu
 
