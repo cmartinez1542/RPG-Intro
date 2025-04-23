@@ -20,7 +20,7 @@ public class Boss_Movement : MonoBehaviour
     public float awakeDistance = 4.0f;
     public float scaredDistance = 8.0f;
 
-    public float moveSpeed = 2.5f;
+    public float moveSpeed = 6.0f;
     public float idleWiggleAmount = 0.2f;
     public float idleWiggleSpeed = 0.25f;
 
@@ -125,14 +125,11 @@ public class Boss_Movement : MonoBehaviour
             case BossState.Idle: // boss will hit the walls, that's fine idrc
                 idleTimer += Time.deltaTime * idleWiggleSpeed;
 
-                float angleOffset = Mathf.Sin(idleTimer) * (Mathf.PI / 2f);
+                float angleOffset = Mathf.Sin(idleTimer) * (Mathf.PI / 3f);
 
                 float totalAngle = idleArcAngle + angleOffset;
 
-                Vector2 offset = new Vector2(
-                    Mathf.Cos(totalAngle),
-                    Mathf.Sin(totalAngle)
-                ) * idleRadius;
+                Vector2 offset = new Vector2(Mathf.Cos(totalAngle),Mathf.Sin(totalAngle)) * idleRadius;
 
                 moveTarget = idleCenter + offset;
 
