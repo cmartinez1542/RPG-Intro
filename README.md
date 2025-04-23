@@ -16,7 +16,7 @@ Roles:
 
 Jackson: Boss level design and boss state machine/animation
 
-James: 
+James: Tutorial Level and SFX
 
 Luis: Horde/Wave level (potentially special state machines for wave tactics?)
 
