@@ -5904,9 +5904,10 @@ GameObject:
   - component: {fileID: 1700533168}
   - component: {fileID: 1700533167}
   - component: {fileID: 1700533171}
+  - component: {fileID: 1700533172}
   m_Layer: 0
   m_Name: Boss (temp & not done)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6066,6 +6067,20 @@ MonoBehaviour:
   moveSpeed: 6
   idleWiggleAmount: 0.2
   idleWiggleSpeed: 0.25
+--- !u!114 &1700533172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700533165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e552d5012ac2e4aaf3e0d68b43013e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthDropPrefab: {fileID: 3041552588521274270, guid: 1f7609051b828004ab83a9ad00dfdd8d, type: 3}
+  currentHealth: 1
 --- !u!1 &1718272866
 GameObject:
   m_ObjectHideFlags: 0

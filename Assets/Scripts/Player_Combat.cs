@@ -40,36 +40,57 @@ public float attackCooldown = 0.8f; // Tiempo de espera entre ataques
     {
         Debug.Log($"[{gameObject.name}] Checking for targets in range {attackRange}");
 
-        // Detectar colisiones con enemigos usando LayerMask "Enemy"
-      Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, LayerMask.GetMask("Enemy"));
+        // Detect all colliders in range (no layer mask)
+        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
 
         Debug.Log($"[{gameObject.name}] Detected {hits.Length} colliders");
-foreach (var hit in hits)
-{
-    Debug.Log($"🎯 Hit: {hit.name}");
 
-    // Aplicar daño al enemigo
-    Enemy_Health enemy = hit.GetComponent<Enemy_Health>();
-    if (enemy != null)
-    {
-        Debug.Log("💥 Enemy_Health encontrado");
-        enemy.TakeDamage(damage);
+        foreach (var hit in hits)
+        {
+            string tag = hit.tag;
+            int layer = hit.gameObject.layer;
+            string layerName = LayerMask.LayerToName(layer);
+
+            // Check if it matches "Enemy" tag OR is on "Enemy" layer
+            if (tag != "Enemy" && layerName != "Enemy")
+            {
+                Debug.Log($"⛔ Skipped {hit.name} (tag: {tag}, layer: {layerName})");
+                continue;
+            }
+
+            Debug.Log($"🎯 Valid target: {hit.name} (tag: {tag}, layer: {layerName})");
+
+            // Check for either health component
+            Enemy_Health enemy = hit.GetComponent<Enemy_Health>();
+            BossHealth boss = hit.GetComponent<BossHealth>();
+
+            if (enemy != null)
+            {
+                Debug.Log("💥 Enemy_Health found");
+                enemy.TakeDamage(damage);
+            }
+            else if (boss != null)
+            {
+                Debug.Log("👑 BossHealth found");
+                boss.TakeDamage(damage);
+            }
+            else
+            {
+                Debug.Log($"⚠️ No health script found on {hit.name}");
+            }
+
+            // Apply knockback if it has a movement script
+            Enemy_Movement enemyMove = hit.GetComponent<Enemy_Movement>();
+            if (enemyMove != null)
+            {
+                Vector2 knockDir = (hit.transform.position - transform.position).normalized;
+                enemyMove.ApplyKnockback(knockDir, knockbackForce, stunTime);
+                Debug.Log($"🌀 Knockback applied to {hit.name}");
+            }
+        }
     }
 
-    // Aplicar knockback si tiene Rigidbody2D
-Enemy_Movement enemyMove = hit.GetComponent<Enemy_Movement>();
-if (enemyMove != null)
-{
-    Vector2 knockDir = (hit.transform.position - transform.position).normalized;
-    enemyMove.ApplyKnockback(knockDir, knockbackForce, stunTime);
-    Debug.Log($"🌀 Knockback con stun aplicado a {hit.name}");
-}
-
-}
-
-    }
-
-void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected()
 {
     if (attackPoint == null) return;
     Gizmos.color = Color.red;
