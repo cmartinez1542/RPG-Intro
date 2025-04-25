@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Boss_Movement : MonoBehaviour
@@ -15,12 +14,11 @@ public class Boss_Movement : MonoBehaviour
 
     public Transform m_player;
     public Rigidbody2D m_playerRb;
+    
+    public float awakeDistance = 4.0f; // boss will stay between awakeDistance and scaredDistance when awake
+    public float scaredDistance = 6.0f; // boss will stay between scaredDistance and 1.5x scaredDistance when scared
 
-    public float wakeDistance = 4.0f;
-    public float awakeDistance = 4.0f;
-    public float scaredDistance = 8.0f;
-
-    public float moveSpeed = 6.0f;
+    public float moveSpeed = 3.0f;
     public float idleWiggleAmount = 0.2f;
     public float idleWiggleSpeed = 0.25f;
 
@@ -29,14 +27,16 @@ public class Boss_Movement : MonoBehaviour
     private float idleRadius;
     private Vector2 idleCenter;
     private float idleArcAngle;
-
+    private BossHealth bossHealth;
+    private bool bossGotScared = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        bossHealth = GetComponent<BossHealth>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (m_player == null || m_playerRb == null)
             return;
@@ -47,14 +47,21 @@ public class Boss_Movement : MonoBehaviour
         switch (currentState)
         {
             case BossState.Sleeping:
-                if (distanceToPlayer < wakeDistance)
+                if (distanceToPlayer < awakeDistance)
                 {
                     currentState = BossState.Awake;
                 }
                 break;
 
             case BossState.Awake:
-                if (playerSpeed < 0.1f && Mathf.Abs(distanceToPlayer - awakeDistance) < 0.2f)
+                if (bossHealth != null && bossHealth.currentHealth < 6)
+                {
+                    currentState = BossState.Scared;
+                    bossGotScared = true;
+                    moveSpeed *= 2.0f;
+                    break;
+                }
+                if (playerSpeed < 0.1f && distanceToPlayer > awakeDistance && distanceToPlayer < scaredDistance)
                 {
                     currentState = BossState.Idle;
                     Vector2 toBoss = (Vector2)transform.position - (Vector2)m_player.position;
@@ -66,7 +73,7 @@ public class Boss_Movement : MonoBehaviour
                 break;
 
             case BossState.Scared:
-                if (playerSpeed < 0.1f && Mathf.Abs(distanceToPlayer - scaredDistance) < 0.2f)
+                if (playerSpeed < 0.1f && distanceToPlayer > scaredDistance && distanceToPlayer < 1.5f*scaredDistance)
                 {
                     currentState = BossState.Idle;
                     Vector2 toBoss = (Vector2)transform.position - (Vector2)m_player.position;
@@ -78,11 +85,20 @@ public class Boss_Movement : MonoBehaviour
                 break;
 
             case BossState.Idle:
+                if (bossHealth != null && bossHealth.currentHealth < 6 && bossGotScared == false)
+                {
+                    currentState = BossState.Scared;
+                    bossGotScared = true;
+                    moveSpeed *= 2.0f;
+                    break;
+                }
                 // Return to active if player moves
                 if (playerSpeed > 0.1f)
                 {
-                    float dist = Vector2.Distance(transform.position, m_player.position);
-                    currentState = dist > awakeDistance * 1.5f ? BossState.Scared : BossState.Awake;
+                    if (bossGotScared)
+                        currentState = BossState.Scared;
+                    else
+                        currentState = BossState.Awake;
                 }
                 break;
         }
@@ -105,37 +121,51 @@ public class Boss_Movement : MonoBehaviour
                 return;
 
             case BossState.Awake:
-                if (distanceToPlayer < awakeDistance * 0.95f)
+                if (distanceToPlayer < awakeDistance)
                     moveTarget = (Vector2)transform.position - toPlayer;
-                else if (distanceToPlayer > awakeDistance * 1.05f)
+                else if (distanceToPlayer > 1.5f*awakeDistance)
                     moveTarget = (Vector2)transform.position + toPlayer;
                 else
                     return;
                 break;
 
             case BossState.Scared:
-                if (distanceToPlayer < scaredDistance * 0.95f)
+                if (distanceToPlayer < scaredDistance)
                     moveTarget = (Vector2)transform.position - toPlayer;
-                else if (distanceToPlayer > scaredDistance * 1.05f)
+                else if (distanceToPlayer > scaredDistance)
                     moveTarget = (Vector2)transform.position + toPlayer;
                 else
                     return;
                 break;
 
-            case BossState.Idle: // boss will hit the walls, that's fine idrc
+            case BossState.Idle:
                 idleTimer += Time.deltaTime * idleWiggleSpeed;
 
                 float angleOffset = Mathf.Sin(idleTimer) * (Mathf.PI / 3f);
-
                 float totalAngle = idleArcAngle + angleOffset;
-
-                Vector2 offset = new Vector2(Mathf.Cos(totalAngle),Mathf.Sin(totalAngle)) * idleRadius;
-
+                Vector2 offset = new Vector2(Mathf.Cos(totalAngle), Mathf.Sin(totalAngle)) * idleRadius;
                 moveTarget = idleCenter + offset;
 
-                Debug.DrawLine(idleCenter, moveTarget, Color.magenta);
+                Vector2 arcDir = (moveTarget - (Vector2)transform.position).normalized;
+                float arcDistance = Vector2.Distance(transform.position, moveTarget);
+                Vector2 rayOrigin = (Vector2)transform.position;
 
+                RaycastHit2D[] hits = Physics2D.RaycastAll(rayOrigin, arcDir, arcDistance, LayerMask.GetMask("Default")); // find objects with hitbox in default layer in our way
+
+                foreach (var hit in hits) // the raycast is stupid and annoyingly always hits the boss itself first, so we have to check ALL raycasts to fnd the wall
+                {
+                    GameObject hitObj = hit.collider.gameObject;
+                    if (hitObj == this.gameObject)
+                        continue;
+
+                    idleTimer = Mathf.PI - idleTimer;
+                    break;
+                }
+
+                Debug.DrawLine(idleCenter, moveTarget, Color.magenta); // shows where the boss wants to go from the center of the arc of sin
+                Debug.DrawRay(rayOrigin, arcDir * arcDistance, Color.yellow); // this traces the distance from boss to where it's trying to go (if any), thus showing if it's hit the wall yet
                 break;
+
         }
 
         rb.MovePosition(Vector2.MoveTowards(rb.position, moveTarget, moveSpeed * Time.deltaTime));

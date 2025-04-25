@@ -5972,7 +5972,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -6061,10 +6061,9 @@ MonoBehaviour:
   currentState: 0
   m_player: {fileID: 0}
   m_playerRb: {fileID: 0}
-  wakeDistance: 4
   awakeDistance: 4
-  scaredDistance: 8
-  moveSpeed: 6
+  scaredDistance: 6
+  moveSpeed: 3
   idleWiggleAmount: 0.2
   idleWiggleSpeed: 0.25
 --- !u!114 &1700533172
@@ -6080,7 +6079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthDropPrefab: {fileID: 3041552588521274270, guid: 1f7609051b828004ab83a9ad00dfdd8d, type: 3}
-  currentHealth: 1
+  currentHealth: 10
 --- !u!1 &1718272866
 GameObject:
   m_ObjectHideFlags: 0
