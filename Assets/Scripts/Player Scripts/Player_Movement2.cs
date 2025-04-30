@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement2 : MonoBehaviour
 {
     [SerializeField] public float speed = 5f;
+
     public Rigidbody2D rb;
     public Animator anim;
     public int facingDirection = 1;
@@ -21,6 +22,16 @@ public class PlayerMovement2 : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private bool isKnockedBacked;
     public int attackRange;
+
+    // Dash Settings
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 24f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+
+    [SerializeField] private TrailRenderer tr;
+
   
     
    
@@ -139,6 +150,25 @@ public class PlayerMovement2 : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
 
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        true.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        true.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = true;
+        yield return new WaitForSeconds(dashingCooldown);
+        yield return new WaitForSeconds (dashingCooldown);
+        canDash = true;
+    }
+
+
 public void Knockback(Transform enemy, float force, float stunTime)
 {
     Debug.Log("Knockback triggered!");
@@ -177,3 +207,5 @@ IEnumerator EndKnockback(float stunTime)
         }
     }
 }
+
+
