@@ -158,9 +158,9 @@ public class PlayerMovement2 : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
-        true.emitting = true;
+        tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
-        true.emitting = false;
+        tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = true;
         yield return new WaitForSeconds(dashingCooldown);
