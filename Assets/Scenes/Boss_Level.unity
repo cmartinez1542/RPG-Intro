@@ -6059,13 +6059,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  attackState: 0
   m_player: {fileID: 0}
   m_playerRb: {fileID: 0}
   awakeDistance: 4
   scaredDistance: 6
+  distanceToPlayer: 0
   moveSpeed: 3
   idleWiggleAmount: 0.2
   idleWiggleSpeed: 0.25
+  attackCheckCooldown: 3
+  minionSpawnTime: 3
+  minionsSpawned: 4
+  rangedAttackTime: 0.3
+  rangedAttack2Time: 1
+  meleeRange: 2.5
+  longRange: 6
 --- !u!114 &1700533172
 MonoBehaviour:
   m_ObjectHideFlags: 0
