@@ -50,6 +50,9 @@ public class Boss_Movement : MonoBehaviour
     private bool bossGotScared = false;
     private float nextAttackCheckTime = 0f;
 
+    public GameObject fireballPrefab;
+    public GameObject firerainPrefab;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -241,9 +244,11 @@ public class Boss_Movement : MonoBehaviour
                 break;
             case AttackState.RangedAttack:
                 yield return new WaitForSeconds(rangedAttackTime);
+                Instantiate(fireballPrefab, transform.position, Quaternion.identity);
                 break;
             case AttackState.RangedAttack2:
                 yield return new WaitForSeconds(rangedAttack2Time);
+                Instantiate(firerainPrefab, m_player.position, Quaternion.identity);
                 break;
         }
         attackState = AttackState.NotAttacking;

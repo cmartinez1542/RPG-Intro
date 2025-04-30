@@ -6075,6 +6075,8 @@ MonoBehaviour:
   rangedAttack2Time: 1
   meleeRange: 2.5
   longRange: 6
+  fireballPrefab: {fileID: 8396408444695783416, guid: 6751aad4cf1c64140be09b84db12456d, type: 3}
+  firerainPrefab: {fileID: 5120689220594762034, guid: 9128e4b67a61a364b869a016631d5239, type: 3}
 --- !u!114 &1700533172
 MonoBehaviour:
   m_ObjectHideFlags: 0
