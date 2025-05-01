@@ -26,9 +26,13 @@ public class PlayerMovement2 : MonoBehaviour
     // Dash Settings
     private bool canDash = true;
     private bool isDashing;
-    private float dashingPower = 24f;
-    private float dashingTime = 0.2f;
+    public float dashingPower = 100f;
+    private float dashingTime = 0.4f;
     private float dashingCooldown = 1f;
+
+    private Vector2 lastDirection = Vector2.right; 
+
+
 
     [SerializeField] private TrailRenderer tr;
 
@@ -86,6 +90,15 @@ public class PlayerMovement2 : MonoBehaviour
         }
     }
         
+    public void OnDash(InputAction.CallbackContext context)
+    {
+
+        if (context.performed && canDash && !isDashing)
+        {
+            Debug.Log("Dash triggered!");
+            StartCoroutine(Dash());
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -97,7 +110,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 
 
-        if (isKnockedBacked == false)
+        if (!isKnockedBacked && !isDashing)
         {       
             
             // Entrada por teclado y joystick
@@ -114,7 +127,7 @@ public class PlayerMovement2 : MonoBehaviour
                 vertical += joystick.Direction.y;
             }
 
-                    // Flip del sprite basado en dirección
+            // Flip del sprite basado en dirección
             if (horizontal > 0 && facingDirection < 0)
                 Flip();
             else if (horizontal < 0 && facingDirection > 0)
@@ -133,6 +146,12 @@ public class PlayerMovement2 : MonoBehaviour
             Debug.Log($" Vertical: {vertical}");
             Debug.Log($" Move direction: {move}");
             Debug.Log($" FixedUpdate - Applying velocity: {rb.linearVelocity}");
+
+            if (move != Vector2.zero)
+            {
+                lastDirection = move;
+            }
+
         }
 
 
@@ -151,20 +170,25 @@ public class PlayerMovement2 : MonoBehaviour
     }
 
 
-    private IEnumerator Dash()
+    IEnumerator Dash()
     {
         canDash = false;
         isDashing = true;
-        float originalGravity = rb.gravityScale;
-        rb.gravityScale = 0f;
-        rb.linearVelocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+
+
+        rb.linearVelocity = lastDirection.normalized * dashingPower;
+        
+        
+        //rb.AddForce(lastDirection * dashingPower, ForceMode2D.Impulse);
         tr.emitting = true;
+
         yield return new WaitForSeconds(dashingTime);
-        tr.emitting = false;
-        rb.gravityScale = originalGravity;
-        isDashing = true;
+
+        tr.emitting = false;       
+        //rb.gravityScale = originalGravity;
+        isDashing = false;
+
         yield return new WaitForSeconds(dashingCooldown);
-        yield return new WaitForSeconds (dashingCooldown);
         canDash = true;
     }
 

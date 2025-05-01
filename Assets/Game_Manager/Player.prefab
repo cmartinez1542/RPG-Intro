@@ -306,6 +306,8 @@ MonoBehaviour:
   player_combat: {fileID: 0}
   spriteRenderer: {fileID: 0}
   attackRange: 0
+  dashingPower: 100
+  tr: {fileID: 0}
 --- !u!114 &7431236308421465479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,7 +437,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_MaskInteraction: 0
   m_Autodestruct: 0
-  m_Emitting: 1
+  m_Emitting: 0
   m_ApplyActiveColorSpace: 1
 --- !u!1 &8971546386918817071
 GameObject:
