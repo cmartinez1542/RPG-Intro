@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement2 : MonoBehaviour
 {
     [SerializeField] public float speed = 5f;
+
     public Rigidbody2D rb;
     public Animator anim;
     public int facingDirection = 1;
@@ -21,6 +22,21 @@ public class PlayerMovement2 : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private bool isKnockedBacked;
     public int attackRange;
+
+    // Dash Settings
+    private bool canDash = true;
+    private bool isDashing;
+    public float dashingPower = 100f;
+    private float dashingTime = 0.4f;
+    private float dashingCooldown = 1f;
+
+    private Vector2 lastDirection = Vector2.right; 
+
+
+
+    [SerializeField] private TrailRenderer tr;
+
+  
     
    
    private void Start()
@@ -74,6 +90,15 @@ public class PlayerMovement2 : MonoBehaviour
         }
     }
         
+    public void OnDash(InputAction.CallbackContext context)
+    {
+
+        if (context.performed && canDash && !isDashing)
+        {
+            Debug.Log("Dash triggered!");
+            StartCoroutine(Dash());
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -83,7 +108,9 @@ public class PlayerMovement2 : MonoBehaviour
             return;
         }
 
-        if (isKnockedBacked == false)
+
+
+        if (!isKnockedBacked && !isDashing)
         {       
             // Entrada por teclado y joystick
             float horizontal = movementInput.x;
@@ -95,7 +122,7 @@ public class PlayerMovement2 : MonoBehaviour
                 vertical += joystick.Direction.y;
             }
 
-                    // Flip del sprite basado en dirección
+            // Flip del sprite basado en dirección
             if (horizontal > 0 && facingDirection < 0)
                 Flip();
             else if (horizontal < 0 && facingDirection > 0)
@@ -113,6 +140,12 @@ public class PlayerMovement2 : MonoBehaviour
             Debug.Log($" Vertical: {vertical}");
             Debug.Log($" Move direction: {move}");
             Debug.Log($" FixedUpdate - Applying velocity: {rb.linearVelocity}");
+
+            if (move != Vector2.zero)
+            {
+                lastDirection = move;
+            }
+
         }
 
 
@@ -129,6 +162,30 @@ public class PlayerMovement2 : MonoBehaviour
         facingDirection *= -1;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
+
+
+    IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+
+
+        rb.linearVelocity = lastDirection.normalized * dashingPower;
+        
+        
+        //rb.AddForce(lastDirection * dashingPower, ForceMode2D.Impulse);
+        tr.emitting = true;
+
+        yield return new WaitForSeconds(dashingTime);
+
+        tr.emitting = false;       
+        //rb.gravityScale = originalGravity;
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
+
 
 public void Knockback(Transform enemy, float force, float stunTime)
 {
@@ -167,3 +224,5 @@ IEnumerator EndKnockback(float stunTime)
         }
     }
 }
+
+

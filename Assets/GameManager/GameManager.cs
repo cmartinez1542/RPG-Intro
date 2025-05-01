@@ -102,5 +102,20 @@ public class GameManager : MonoBehaviour
                 Debug.LogWarning("Couldn't find the boss");
             }
         }
+
+        if (SceneManager.GetActiveScene().name == "Boss_Level")
+        {
+            Boss_Movement boss = Object.FindFirstObjectByType<Boss_Movement>();
+            if (boss != null)
+            {
+                boss.m_player = playerInput.transform;
+                boss.m_playerRb = playerInput.GetComponent<Rigidbody2D>();
+                Debug.Log("Boss assigned player transform" + playerInput.transform.name);
+            }
+            else
+            {
+                Debug.LogWarning("Couldn't find the boss");
+            }
+        }
     }
 }

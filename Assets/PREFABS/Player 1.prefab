@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 379254403007530224}
   m_Layer: 0
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -305,6 +305,7 @@ MonoBehaviour:
   pressStartTime: 0
   pressDuration: 0
   attackButtonHandler: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!95 &5110199027349028323
 Animator:
   serializedVersion: 7
@@ -342,6 +343,10 @@ MonoBehaviour:
   anim: {fileID: 5110199027349028323}
   attackState: 0
   audiomanager: {fileID: 0}
+  knockbackForce: 1
+  attackRange: 1
+  stunTime: 1
+  damage: 1
 --- !u!114 &379254403007530224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +380,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9120bedf-5d28-4820-a0c8-57298c94d312
     m_ActionName: 'Player/Attack[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 44086d41-c9ed-4c38-861d-e451128d2587
+    m_ActionName: Player/OnJoin
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 63288939-b313-447c-8431-9a63e1938c62
+    m_ActionName: 'Player/Attack2[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6a4f0e59-e656-46c0-a314-b5830851050a
+    m_ActionName: 'Player 2/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bcdaa198-d699-4bca-96bd-0f43c9cfac05
+    m_ActionName: 'Player 2/Attack[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 80a71eff-00b5-4e98-bdd4-1a0c2902f6d4
+    m_ActionName: 'Player 2/OnJoin[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Controler 1
   m_DefaultActionMap: Player

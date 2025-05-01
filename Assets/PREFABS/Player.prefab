@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 557682028629884001}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   pressStartTime: 0
   pressDuration: 0
   attackButtonHandler: {fileID: 0}
+  spriteRenderer: {fileID: 0}
 --- !u!95 &656647724466494795
 Animator:
   serializedVersion: 7
@@ -216,6 +217,10 @@ MonoBehaviour:
   anim: {fileID: 656647724466494795}
   attackState: 0
   audiomanager: {fileID: 0}
+  knockbackForce: 1
+  attackRange: 1
+  stunTime: 1
+  damage: 1
 --- !u!1 &4676312989154581041
 GameObject:
   m_ObjectHideFlags: 0
