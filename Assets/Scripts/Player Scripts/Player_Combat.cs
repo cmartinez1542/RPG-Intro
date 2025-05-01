@@ -135,7 +135,14 @@ public class Player_Combat : MonoBehaviour
                     enemySemiBoss.TakeDamage(damage, transform);
                 }
 
-                // Aplicar knockback si tiene Rigidbody2D
+                BossHealth enemyBoss = hit.GetComponent<BossHealth>();
+                if (enemyBoss != null)
+                {
+                    Debug.Log("Boss hit!");
+                    enemyBoss.TakeDamage(damage);
+                }
+
+            // Aplicar knockback si tiene Rigidbody2D
             Enemy_Movement enemyMove = hit.GetComponent<Enemy_Movement>();
             if (enemyMove != null)
             {

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5706371888216224442}
   - component: {fileID: 7746960680797116676}
   - component: {fileID: 7851331488411260325}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FireyRain
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,3 +137,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828fff0f6db4dda479479e7f5bb46f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 3
+  damageInterval: 0.5
