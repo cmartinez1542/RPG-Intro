@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class RoomManager : MonoBehaviour
 {
-    public static RoomManager Instance;
+    public enum Direction { None, Up, Down, Left, Right }
+    public Direction lastDirection = Direction.None;
+    public string lastDoorID = "";
 
-    public GameObject currentRoom; // La sala activa
+    private float roomSwitchCooldown = 0.5f;
+    private float lastSwitchTime = -10f;
+
+    public static RoomManager Instance;
+    public GameObject currentRoom;
 
     private void Awake()
     {
@@ -16,13 +22,18 @@ public class RoomManager : MonoBehaviour
 
     public void SetCurrentRoom(GameObject newRoom)
     {
+        if (Time.time - lastSwitchTime < roomSwitchCooldown)
+            return;
+
+        lastSwitchTime = Time.time;
+
         if (currentRoom != null)
-        {
-            currentRoom.SetActive(false); // Apaga la anterior
-        }
+            currentRoom.SetActive(false);
 
         currentRoom = newRoom;
-        currentRoom.SetActive(true); // Enciende la nueva
-        Debug.Log("📦 Activando sala: " + currentRoom.name);
+        currentRoom.SetActive(true);
+
+        Debug.Log($"📦 Activando sala: {currentRoom.name} desde puerta '{lastDoorID}' y dirección {lastDirection}");
     }
 }
+

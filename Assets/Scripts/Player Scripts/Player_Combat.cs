@@ -109,7 +109,6 @@ public class Player_Combat : MonoBehaviour
                     GetComponent<Rigidbody2D>().linearVelocity = selfDirection * PknockbackForce;
                      Vector2 knockDir = (hit.transform.position - transform.position).normalized;
                     playerMovement.Knockback(transform, PknockbackForce, stunTime);
-
                     hit.GetComponent<Player_Health>().ChangeHealth(-damage);
                     Debug.Log($"[{gameObject.name}] Knockback called on {hit.name}");
                     CameraShake.Instance.Shake();
@@ -126,7 +125,14 @@ public class Player_Combat : MonoBehaviour
                 if (enemy != null)
                 {
                     Debug.Log(" Enemy_Health encontrado");
-                    enemy.TakeDamage(damage);
+                    enemy.TakeDamage(damage, transform);
+                }
+
+                SemiBoss_Health enemySemiBoss = hit.GetComponent<SemiBoss_Health>();
+                if (enemySemiBoss != null)
+                {
+                    Debug.Log(" Enemy_Health encontrado");
+                    enemySemiBoss.TakeDamage(damage, transform);
                 }
 
                 // Aplicar knockback si tiene Rigidbody2D
@@ -136,6 +142,7 @@ public class Player_Combat : MonoBehaviour
                 PlayerMovement2 playerMovement = GetComponent<PlayerMovement2>();
                 Vector2 knockDir = (hit.transform.position - transform.position).normalized;
                 enemyMove.ApplyKnockback(knockDir, knockbackForce, stunTime);
+
                 Debug.Log($" Knockback con stun aplicado a {hit.name}");
 
                 // Knockback to self (reverse direction)
@@ -150,7 +157,47 @@ public class Player_Combat : MonoBehaviour
 
             }
 
-  
+              EnemyArcher enemyArrowMove = hit.GetComponent<EnemyArcher>();
+            if (enemyArrowMove != null)
+            {
+                PlayerMovement2 playerMovement = GetComponent<PlayerMovement2>();
+                Vector2 knockDir = (hit.transform.position - transform.position).normalized;
+                enemyArrowMove.ApplyKnockback(knockDir, knockbackForce, stunTime);
+                
+                Debug.Log($" Knockback con stun aplicado a {hit.name}");
+
+                // Knockback to self (reverse direction)
+                Vector2 selfDirection = (transform.position - hit.transform.position).normalized;
+                GetComponent<Rigidbody2D>().linearVelocity = selfDirection * PknockbackForce;
+                playerMovement.Knockback(transform, PknockbackForce, stunTime);
+
+                //GetComponent<Rigidbody2D>().linearVelocity = selfDirection * PknockbackForce;
+
+                // Camara Shake
+                CameraShake.Instance.Shake();
+
+            }
+
+                          OrcMovement enemyOrcMove = hit.GetComponent<OrcMovement>();
+            if (enemyOrcMove != null)
+            {
+                PlayerMovement2 playerMovement = GetComponent<PlayerMovement2>();
+                Vector2 knockDir = (hit.transform.position - transform.position).normalized;
+                enemyOrcMove.ApplyKnockback(knockDir, knockbackForce, stunTime);
+                
+                Debug.Log($" Knockback con stun aplicado a {hit.name}");
+
+                // Knockback to self (reverse direction)
+                Vector2 selfDirection = (transform.position - hit.transform.position).normalized;
+                GetComponent<Rigidbody2D>().linearVelocity = selfDirection * PknockbackForce;
+                playerMovement.Knockback(transform, PknockbackForce, stunTime);
+
+                //GetComponent<Rigidbody2D>().linearVelocity = selfDirection * PknockbackForce;
+
+                // Camara Shake
+                CameraShake.Instance.Shake();
+
+            }
             
         }
     }

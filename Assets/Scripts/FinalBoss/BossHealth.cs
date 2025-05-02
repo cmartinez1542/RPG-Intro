@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class Enemy_Health : MonoBehaviour
+public class BossHealth : MonoBehaviour
 {
-   public GameObject healthDropPrefab; // El prefab del steak
+    public GameObject healthDropPrefab; // The steak (health) drop prefab
 
     public int currentHealth;
 
@@ -11,7 +11,6 @@ public class Enemy_Health : MonoBehaviour
 
     private void Start()
     {
-        
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -19,8 +18,7 @@ public class Enemy_Health : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        Debug.Log("🩸 Enemigo recibió daño. Vida actual: " + currentHealth);
-
+        Debug.Log("Boss took damage. Current health: " + currentHealth);
 
         if (currentHealth <= 0)
             Die();
@@ -28,12 +26,12 @@ public class Enemy_Health : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("☠️ Enemigo eliminado.");
+        Debug.Log("Boss defeated.");
 
         if (anim != null)
-            anim.SetTrigger("Death"); // Animación de muerte (opcional)
+            anim.SetTrigger("Death"); // Optional death animation
 
-        // Desactiva colisión y movimiento
+        // Disable collision and movement
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
@@ -42,14 +40,13 @@ public class Enemy_Health : MonoBehaviour
 
         if (rb != null) rb.linearVelocity = Vector2.zero;
 
+        // Drop health if prefab is assigned
         if (healthDropPrefab != null)
-{
-    Instantiate(healthDropPrefab, transform.position, Quaternion.identity);
-}
+        {
+            Instantiate(healthDropPrefab, transform.position, Quaternion.identity);
+        }
 
-
-        // Destruye el objeto después de 1.5 segundos (para dejar animación de muerte)
+        // Destroy the object after 1.5 seconds to allow death animation to play
         Destroy(gameObject, 1.5f);
     }
 }
-
