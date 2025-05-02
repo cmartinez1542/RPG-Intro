@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8290385259065806439}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: 'attackPoint '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,11 +45,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 924912846881030532, guid: 5580b5a8ad5fdd844aa08085e6af548e, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 924912846881030532, guid: 5580b5a8ad5fdd844aa08085e6af548e, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315969433480200900, guid: 5580b5a8ad5fdd844aa08085e6af548e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4230181108591323607, guid: fdbc39c16b4dcf74d9366dc364b14d34, type: 3}
+    - target: {fileID: 3315969433480200900, guid: 5580b5a8ad5fdd844aa08085e6af548e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4692379043981906379, guid: 5580b5a8ad5fdd844aa08085e6af548e, type: 3}
       propertyPath: player
@@ -123,7 +131,8 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4692379043981906379, guid: 5580b5a8ad5fdd844aa08085e6af548e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5797712768252032258, guid: 5580b5a8ad5fdd844aa08085e6af548e, type: 3}
@@ -133,6 +142,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 924912846881030532, guid: 5580b5a8ad5fdd844aa08085e6af548e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6186742842144031260}
+    - targetCorrespondingSourceObject: {fileID: 924912846881030532, guid: 5580b5a8ad5fdd844aa08085e6af548e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7815743298412560499}
   m_SourcePrefab: {fileID: 100100000, guid: 5580b5a8ad5fdd844aa08085e6af548e, type: 3}
 --- !u!4 &602042905407275514 stripped
 Transform:
@@ -158,3 +170,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthDropPrefab: {fileID: 3041552588521274270, guid: 1f7609051b828004ab83a9ad00dfdd8d, type: 3}
   currentHealth: 10
+--- !u!114 &7815743298412560499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6123361175611307388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c8c32d853e91547855afacb1142d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 1
+  damage: 1
+  attackPoint: {fileID: 8290385259065806439}
+  weaponRange: 1
+  knockbackForce: 2
+  stunTime: 1
+  player: {fileID: 0}
+  detectionRange: 5
+  stopDistance: 1.5
+  moveSpeed: 2
+  attackPointOffset: {x: 1.5, y: 0, z: 0}

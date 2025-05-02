@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4947223034694916717}
   - component: {fileID: 3004479792085897624}
   - component: {fileID: 5961538241029428985}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BossFireball
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,3 +165,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c0db98b13fe53489ee7b621372859e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
+  lifetime: 5
