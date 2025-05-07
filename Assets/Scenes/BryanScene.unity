@@ -155,6 +155,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7941702789073893355, guid: 2d0ba589923c25c45952e43509518075, type: 3}
   m_PrefabInstance: {fileID: 1516865227}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+--- !u!4 &141143070 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 758067275895116242, guid: de2b104e448205441a290765affc1064, type: 3}
+  m_PrefabInstance: {fileID: 967536688}
+  m_PrefabAsset: {fileID: 0}
+>>>>>>> Bryan+Alpha+Boss
 --- !u!1 &142983769 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5882763828772058139, guid: 2d0ba589923c25c45952e43509518075, type: 3}
@@ -165,6 +173,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4105433246240520901, guid: 2d0ba589923c25c45952e43509518075, type: 3}
   m_PrefabInstance: {fileID: 1516865227}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!114 &280953098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +208,8 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
+=======
+>>>>>>> Bryan+Alpha+Boss
 --- !u!1 &376464858
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +377,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d935e98a30ab1b4c902abcec45329f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  healthDropPrefab: {fileID: 8607185275513744220, guid: eb752c6b6d9ea6649a6c24aa12601257, type: 3}
+  currentHealth: 10
+>>>>>>> Bryan+Alpha+Boss
 --- !u!4 &431542687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2702074107931450413, guid: 40b9bc6facef0a44aa38c6e25345fb5a, type: 3}
@@ -528,6 +544,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!4 &774412089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2282438384830233660, guid: 7697a49ea05824642b45a2fab61c81c4, type: 3}
@@ -595,6 +612,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7697a49ea05824642b45a2fab61c81c4, type: 3}
+=======
+>>>>>>> Bryan+Alpha+Boss
 --- !u!1001 &967536688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -624,10 +643,13 @@ PrefabInstance:
       value: 1639
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+<<<<<<< HEAD
       propertyPath: m_TileColorArray.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+=======
+>>>>>>> Bryan+Alpha+Boss
       propertyPath: m_Tiles.Array.data[0].first.x
       value: -39
       objectReference: {fileID: 0}
@@ -7358,6 +7380,7 @@ PrefabInstance:
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_TileAssetArray.Array.data[27].m_Data
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: 1818471913}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_Data
@@ -7370,10 +7393,17 @@ PrefabInstance:
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[2].m_Data
       value: 
+=======
+      objectReference: {fileID: 11400000, guid: 10e87f2dd91723145b5ef1270ffc5aef, type: 2}
+    - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+      propertyPath: m_TileSpriteArray.Array.data[1].m_Data
+      value: 
+>>>>>>> Bryan+Alpha+Boss
       objectReference: {fileID: -1421921830, guid: af9e44bfd8150c44280f6ef82d1f2411, type: 3}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[3].m_Data
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: -1867593147, guid: af9e44bfd8150c44280f6ef82d1f2411, type: 3}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_TileColorArray.Array.data[1].m_Data.a
@@ -7399,6 +7429,17 @@ PrefabInstance:
       propertyPath: m_TileSpriteArray.Array.data[23].m_Data
       value: 
       objectReference: {fileID: -77003987, guid: af9e44bfd8150c44280f6ef82d1f2411, type: 3}
+=======
+      objectReference: {fileID: -323911551, guid: af9e44bfd8150c44280f6ef82d1f2411, type: 3}
+    - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+      propertyPath: m_TileSpriteArray.Array.data[22].m_Data
+      value: 
+      objectReference: {fileID: -77003987, guid: af9e44bfd8150c44280f6ef82d1f2411, type: 3}
+    - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+      propertyPath: m_TileSpriteArray.Array.data[23].m_Data
+      value: 
+      objectReference: {fileID: 6725747045757309448, guid: 2e4283bde261a9442980f0f1c31504ce, type: 3}
+>>>>>>> Bryan+Alpha+Boss
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_Tiles.Array.data[0].second.m_TileIndex
       value: 26
@@ -7413,11 +7454,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_RefCount
+<<<<<<< HEAD
       value: 1637
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_TileColorArray.Array.data[1].m_RefCount
       value: 2
+=======
+      value: 1639
+>>>>>>> Bryan+Alpha+Boss
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_Tiles.Array.data[13].second.m_TileIndex
@@ -7492,12 +7537,17 @@ PrefabInstance:
       value: 1639
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+<<<<<<< HEAD
       propertyPath: m_TileSpriteArray.Array.data[0].m_RefCount
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[1].m_RefCount
       value: 0
+=======
+      propertyPath: m_TileSpriteArray.Array.data[1].m_RefCount
+      value: 1
+>>>>>>> Bryan+Alpha+Boss
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_Tiles.Array.data[112].second.m_TileIndex
@@ -7977,7 +8027,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[23].m_RefCount
+<<<<<<< HEAD
       value: 1
+=======
+      value: 2
+>>>>>>> Bryan+Alpha+Boss
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_Tiles.Array.data[1008].second.m_TileIndex
@@ -8029,6 +8083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_Tiles.Array.data[18].second.m_AllTileFlags
+<<<<<<< HEAD
       value: 1073741827
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
@@ -8038,12 +8093,24 @@ PrefabInstance:
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_Tiles.Array.data[0].second.m_TileSpriteIndex
       value: 2
+=======
+      value: 1073741826
+      objectReference: {fileID: 0}
+    - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+      propertyPath: m_Tiles.Array.data[19].second.m_AllTileFlags
+      value: 1073741826
+      objectReference: {fileID: 0}
+    - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+      propertyPath: m_Tiles.Array.data[0].second.m_TileSpriteIndex
+      value: 1
+>>>>>>> Bryan+Alpha+Boss
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_Tiles.Array.data[1638].second.m_AllTileFlags
       value: 1073741825
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+<<<<<<< HEAD
       propertyPath: m_Tiles.Array.data[18].second.m_TileColorIndex
       value: 1
       objectReference: {fileID: 0}
@@ -8052,6 +8119,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+=======
+>>>>>>> Bryan+Alpha+Boss
       propertyPath: m_Tiles.Array.data[2].second.m_TileSpriteIndex
       value: 16
       objectReference: {fileID: 0}
@@ -8068,12 +8137,17 @@ PrefabInstance:
       value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+<<<<<<< HEAD
       propertyPath: m_Tiles.Array.data[18].second.m_TileSpriteIndex
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_Tiles.Array.data[19].second.m_TileSpriteIndex
       value: 0
+=======
+      propertyPath: m_Tiles.Array.data[19].second.m_TileSpriteIndex
+      value: 23
+>>>>>>> Bryan+Alpha+Boss
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_Tiles.Array.data[20].second.m_TileSpriteIndex
@@ -8201,6 +8275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
       propertyPath: m_Tiles.Array.data[179].second.m_TileSpriteIndex
+<<<<<<< HEAD
       value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
@@ -8212,6 +8287,19 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+=======
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+      propertyPath: m_Tiles.Array.data[180].second.m_TileSpriteIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+      propertyPath: m_Tiles.Array.data[181].second.m_TileSpriteIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 352805791108656827, guid: de2b104e448205441a290765affc1064, type: 3}
+>>>>>>> Bryan+Alpha+Boss
       propertyPath: m_Tiles.Array.data[185].second.m_TileSpriteIndex
       value: 28
       objectReference: {fileID: 0}
@@ -8926,6 +9014,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1231579357}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!4 &1091354315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7863542317373539214, guid: 01fc3831b1b334f42b9fcd016b68a13b, type: 3}
@@ -9234,6 +9323,8 @@ Sprite:
   m_Bones: []
   m_ScriptableObjects: []
   m_SpriteID: 
+=======
+>>>>>>> Bryan+Alpha+Boss
 --- !u!1 &1231579355
 GameObject:
   m_ObjectHideFlags: 0
@@ -9286,11 +9377,14 @@ Transform:
   - {fileID: 1081276608}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1288035587 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4279225312943728087, guid: 5d7f6a2a2346e474e88a44438c9c8415, type: 3}
   m_PrefabInstance: {fileID: 1945903982}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> Bryan+Alpha+Boss
 --- !u!1 &1466647783 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5207800102598373441, guid: de2b104e448205441a290765affc1064, type: 3}
@@ -18312,6 +18406,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3315596220213273371, guid: de2b104e448205441a290765affc1064, type: 3}
   m_PrefabInstance: {fileID: 967536688}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+=======
+--- !u!4 &1769211106 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4455230512348433774, guid: de2b104e448205441a290765affc1064, type: 3}
+  m_PrefabInstance: {fileID: 967536688}
+  m_PrefabAsset: {fileID: 0}
+>>>>>>> Bryan+Alpha+Boss
 --- !u!114 &1769211113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18324,6 +18426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4591537cb7e9c724bb8ef5e3c45ef3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   attackPoint: {fileID: 0}
   weaponRange: 1
   damage: 1
@@ -18337,6 +18440,21 @@ MonoBehaviour:
   swordDuration: 60
   moveSpeed: 3
   attackRange: 8
+=======
+  attackPoint: {fileID: 141143070}
+  weaponRange: 2
+  damage: 5
+  knockbackForce: 40
+  stunTime: 1
+  currentState: 1
+  arrowPrefab: {fileID: 4099182473418217388, guid: 62aa8faabdd4ced41b4e56efc77269ed, type: 3}
+  firePoint: {fileID: 1769211106}
+  arrowRate: 0.2
+  arrowDuration: 10
+  swordDuration: 30
+  moveSpeed: 3
+  attackRange: 20
+>>>>>>> Bryan+Alpha+Boss
   stopDistance: 1.5
   maxHealth: 100
 --- !u!114 &1769211114
@@ -18351,8 +18469,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f58511f74d02d7d4fa282edfe8b406f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   healthDropPrefab: {fileID: 0}
   currentHealth: 0
+=======
+  healthDropPrefab: {fileID: 1769211105}
+  currentHealth: 100
+>>>>>>> Bryan+Alpha+Boss
 --- !u!1 &1817067972
 GameObject:
   m_ObjectHideFlags: 0
@@ -18492,6 +18615,7 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+<<<<<<< HEAD
 --- !u!114 &1818471913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18526,6 +18650,8 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 3
   m_ColliderType: 1
+=======
+>>>>>>> Bryan+Alpha+Boss
 --- !u!1001 &1858159357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18656,6 +18782,7 @@ PrefabInstance:
       value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
+<<<<<<< HEAD
       propertyPath: m_TileColorArray.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -18663,11 +18790,17 @@ PrefabInstance:
       propertyPath: m_TileAssetArray.Array.data[26].m_Data
       value: 
       objectReference: {fileID: 280953098}
+=======
+      propertyPath: m_TileAssetArray.Array.data[26].m_Data
+      value: 
+      objectReference: {fileID: 11400000, guid: 10e87f2dd91723145b5ef1270ffc5aef, type: 2}
+>>>>>>> Bryan+Alpha+Boss
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
       propertyPath: m_TileAssetArray.Array.data[27].m_Data
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
+<<<<<<< HEAD
       propertyPath: m_TileColorArray.Array.data[1].m_Data.a
       value: 1
       objectReference: {fileID: 0}
@@ -18691,6 +18824,15 @@ PrefabInstance:
       propertyPath: m_TileSpriteArray.Array.data[22].m_Data
       value: 
       objectReference: {fileID: 0}
+=======
+      propertyPath: m_TileSpriteArray.Array.data[15].m_Data
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
+      propertyPath: m_TileSpriteArray.Array.data[22].m_Data
+      value: 
+      objectReference: {fileID: 6725747045757309448, guid: 2e4283bde261a9442980f0f1c31504ce, type: 3}
+>>>>>>> Bryan+Alpha+Boss
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[23].m_Data
       value: 
@@ -18700,6 +18842,7 @@ PrefabInstance:
       value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
+<<<<<<< HEAD
       propertyPath: m_TileColorArray.Array.data[0].m_RefCount
       value: 247
       objectReference: {fileID: 0}
@@ -18708,6 +18851,8 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
+=======
+>>>>>>> Bryan+Alpha+Boss
       propertyPath: m_TileAssetArray.Array.data[26].m_RefCount
       value: 2
       objectReference: {fileID: 0}
@@ -18717,11 +18862,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[15].m_RefCount
+<<<<<<< HEAD
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[22].m_RefCount
       value: 0
+=======
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
+      propertyPath: m_TileSpriteArray.Array.data[22].m_RefCount
+      value: 2
+>>>>>>> Bryan+Alpha+Boss
       objectReference: {fileID: 0}
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[23].m_RefCount
@@ -18729,6 +18882,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
       propertyPath: m_Tiles.Array.data[0].second.m_AllTileFlags
+<<<<<<< HEAD
       value: 1073741827
       objectReference: {fileID: 0}
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
@@ -18750,6 +18904,17 @@ PrefabInstance:
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
       propertyPath: m_Tiles.Array.data[1].second.m_TileSpriteIndex
       value: 15
+=======
+      value: 1073741826
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
+      propertyPath: m_Tiles.Array.data[1].second.m_AllTileFlags
+      value: 1073741826
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
+      propertyPath: m_Tiles.Array.data[1].second.m_TileSpriteIndex
+      value: 22
+>>>>>>> Bryan+Alpha+Boss
       objectReference: {fileID: 0}
     - target: {fileID: 6731109902544816062, guid: 1cb98da43cf61f2419805eadcb10af1a, type: 3}
       propertyPath: m_Tiles.Array.data[191].second.m_TileSpriteIndex
@@ -18819,6 +18984,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     m_RemovedComponents:
     - {fileID: 5092976167792867637, guid: 5d7f6a2a2346e474e88a44438c9c8415, type: 3}
     - {fileID: 6924391319535069832, guid: 5d7f6a2a2346e474e88a44438c9c8415, type: 3}
@@ -18831,12 +18997,19 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4279225312943728087, guid: 5d7f6a2a2346e474e88a44438c9c8415, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1945903984}
+=======
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+>>>>>>> Bryan+Alpha+Boss
   m_SourcePrefab: {fileID: 100100000, guid: 5d7f6a2a2346e474e88a44438c9c8415, type: 3}
 --- !u!4 &1945903983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7476735010964001105, guid: 5d7f6a2a2346e474e88a44438c9c8415, type: 3}
   m_PrefabInstance: {fileID: 1945903982}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!114 &1945903984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18875,6 +19048,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthDropPrefab: {fileID: 0}
   currentHealth: 5
+=======
+>>>>>>> Bryan+Alpha+Boss
 --- !u!1 &1956574718
 GameObject:
   m_ObjectHideFlags: 0
@@ -19021,6 +19196,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!213 &2093276241
 Sprite:
   m_ObjectHideFlags: 0
@@ -19232,6 +19408,8 @@ Sprite:
   m_Bones: []
   m_ScriptableObjects: []
   m_SpriteID: 
+=======
+>>>>>>> Bryan+Alpha+Boss
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -19248,4 +19426,7 @@ SceneRoots:
   - {fileID: 967536688}
   - {fileID: 28591340}
   - {fileID: 731464155}
+<<<<<<< HEAD
   - {fileID: 1156944098}
+=======
+>>>>>>> Bryan+Alpha+Boss

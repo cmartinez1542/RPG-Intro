@@ -130,11 +130,15 @@ public class PlayerMovement2 : MonoBehaviour
                 Flip();
 
             anim.SetFloat("horizontal", Mathf.Abs(horizontal));
-            anim.SetFloat("vertical", vertical);
+            anim.SetFloat("vertical", Mathf.Abs(vertical));
 
             Vector2 move = new Vector2(horizontal, vertical).normalized;
 
+<<<<<<< HEAD
             rb.linearVelocity = move * speed;
+=======
+          rb.linearVelocity = move * speed;
+>>>>>>> Bryan+Alpha+Boss
 
 
             Debug.Log($" Horizontal: {horizontal}");
