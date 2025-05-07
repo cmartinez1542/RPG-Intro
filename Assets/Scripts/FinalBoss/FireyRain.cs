@@ -30,6 +30,23 @@ public class FireyRain : MonoBehaviour
 
         foreach (Collider2D hit in hits)
         {
+            if (hit.gameObject.CompareTag("Player"))
+            {
+                Player_Health playerHealth = hit.GetComponent<Player_Health>();
+
+                if (playerHealth != null)
+                {
+                    playerHealth.ChangeHealth(-5);
+                    Debug.Log("Fireball hit player");
+                }
+
+                PlayerMovement2 playerMovement = hit.GetComponent<PlayerMovement2>();
+                if (playerMovement != null)
+                {
+                    Vector2 knockDir = (hit.transform.position - transform.position).normalized;
+                    playerMovement.Knockback(transform, 2f, 0.5f);
+                }
+            }
         }
     }
 }

@@ -36,9 +36,25 @@ public class BossFireball : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Ignore boss or other fireballs
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject == gameObject) // TODO add "projectile tag so that fireball and firerain don't despawn when hitting each other"
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Weapon"))
             return;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Player_Health playerHealth = collision.GetComponent<Player_Health>();
 
+            if (playerHealth != null)
+            {
+                playerHealth.ChangeHealth(-5);
+                Debug.Log("Fireball hit player");
+            }
+            
+            PlayerMovement2 playerMovement = collision.GetComponent<PlayerMovement2>();
+            if (playerMovement != null)
+            {
+                Vector2 knockDir = (collision.transform.position - transform.position).normalized;
+                playerMovement.Knockback(transform, 2f, 0.5f);
+            }
+        }
         // Destroy on any other collision
         Destroy(gameObject);
     }
