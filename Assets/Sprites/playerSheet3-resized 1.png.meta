@@ -822,7 +822,35 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      playerSheet3-resized 1_0: 1596592448424305392
+      playerSheet3-resized 1_1: -1076999293424274397
+      playerSheet3-resized 1_10: -3032533264057690273
+      playerSheet3-resized 1_11: 1033035020636811934
+      playerSheet3-resized 1_12: -8797014386690019923
+      playerSheet3-resized 1_13: 8486096485978857107
+      playerSheet3-resized 1_14: -3968983300175881071
+      playerSheet3-resized 1_15: -1134577115482191608
+      playerSheet3-resized 1_16: 9000135417679670420
+      playerSheet3-resized 1_17: -2293154594809112824
+      playerSheet3-resized 1_18: -5296371862757948442
+      playerSheet3-resized 1_19: -7696509438776810894
+      playerSheet3-resized 1_2: -2662025410653493397
+      playerSheet3-resized 1_20: -6383969888835391193
+      playerSheet3-resized 1_21: 5193726883756143830
+      playerSheet3-resized 1_22: -6996463946443315978
+      playerSheet3-resized 1_23: 9189906909695928685
+      playerSheet3-resized 1_24: -1502540286000631406
+      playerSheet3-resized 1_25: -1508757084872788577
+      playerSheet3-resized 1_26: -7438701227773761334
+      playerSheet3-resized 1_27: 6192352469320759502
+      playerSheet3-resized 1_3: 4995059715102193336
+      playerSheet3-resized 1_4: -1561107109254206949
+      playerSheet3-resized 1_5: -4916914323606147637
+      playerSheet3-resized 1_6: -7204189757702775439
+      playerSheet3-resized 1_7: -443111511898764957
+      playerSheet3-resized 1_8: 3302326639027571772
+      playerSheet3-resized 1_9: -4913970849422520753
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

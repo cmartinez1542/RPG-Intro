@@ -29,6 +29,7 @@ public class PlayerMovement2 : MonoBehaviour
     public float dashingPower = 100f;
     private float dashingTime = 0.4f;
     private float dashingCooldown = 1f;
+    public ParticleSystem dust;
 
     private Vector2 lastDirection = Vector2.right; 
 
@@ -129,11 +130,11 @@ public class PlayerMovement2 : MonoBehaviour
                 Flip();
 
             anim.SetFloat("horizontal", Mathf.Abs(horizontal));
-            anim.SetFloat("vertical", Mathf.Abs(vertical));
+            anim.SetFloat("vertical", vertical);
 
             Vector2 move = new Vector2(horizontal, vertical).normalized;
 
-          rb.linearVelocity = move * speed;
+            rb.linearVelocity = move * speed;
 
 
             Debug.Log($" Horizontal: {horizontal}");
@@ -161,7 +162,10 @@ public class PlayerMovement2 : MonoBehaviour
     {
         facingDirection *= -1;
         transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        dust.Play();
+    
     }
+
 
 
     IEnumerator Dash()
@@ -192,6 +196,8 @@ public void Knockback(Transform enemy, float force, float stunTime)
     Debug.Log("Knockback triggered!");
 
     isKnockedBacked = true;
+
+    dust.Play();
 
     Vector2 direction = (transform.position - enemy.position).normalized;
 

@@ -19,6 +19,8 @@ public class Player_Combat : MonoBehaviour
     public float attackRange = 1f;
     public float stunTime = 0.07f;
     public int damage = 1;
+    public int magicCost = 1;
+    public bool magicApplied = false;
     public BoxCollider2D swordCollider;
     public LayerMask targetLayer;
 
@@ -110,6 +112,8 @@ public class Player_Combat : MonoBehaviour
                      Vector2 knockDir = (hit.transform.position - transform.position).normalized;
                     playerMovement.Knockback(transform, PknockbackForce, stunTime);
                     hit.GetComponent<Player_Health>().ChangeHealth(-damage);
+
+
                     Debug.Log($"[{gameObject.name}] Knockback called on {hit.name}");
                     CameraShake.Instance.Shake();
 
@@ -217,13 +221,32 @@ public class Player_Combat : MonoBehaviour
 
     public void SmashAttack()
 {    
+
+
     knockbackForce = 5f;
     attackRange = 2f;  
     CameraShake.Instance.shakeMagnitude = 0.3f; // <- Stronger shake
     CameraShake.Instance.shakeDuration = 0.2f;
+    magicCost = 3;
+    magicApplied = true;
+
+    // Get reference to Player_Magic
+    Player_Magic magic = GetComponent<Player_Magic>();
+
+    if (magic.currentMagic >= magicCost)
+    {
+
+    // IF Magic Cost is >= current Magic 
     anim.SetBool("Attack2", true);
     attackState = anim.GetBool("Attack2");
     Debug.Log($"{gameObject.name} used Rock Smash!");
+
+
+    // Magic slider
+    GetComponent<Player_Magic>().ChangeMagic(-magicCost);
+
+
+    }
 
     // anim.SetTrigger("RockSmash"); only if you use a different animation trigger
 
@@ -233,6 +256,7 @@ public class Player_Combat : MonoBehaviour
     public void FinishSmashAttack()
     {
         anim.SetBool("Attack2", false);
+
         attackState = anim.GetBool("Attack2");
         Debug.Log("Second Attack Ended: Continue_Attacking set to FALSE, Current Value: " + attackState);
     }
