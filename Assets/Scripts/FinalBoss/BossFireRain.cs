@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class FireyRain : MonoBehaviour
+public class BossFireRain : MonoBehaviour
 {
-    public float duration = 3f;
-    public float damageInterval = 0.5f;
+    public float duration = 5f;
+    public float damageInterval = 1.0f;
 
     private void Start()
     {
@@ -16,8 +16,8 @@ public class FireyRain : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < duration)
         {
-            DealDamageToPlayersInZone();
             yield return new WaitForSeconds(damageInterval);
+            DealDamageToPlayersInZone();
             elapsed += damageInterval;
         }
 
@@ -37,14 +37,7 @@ public class FireyRain : MonoBehaviour
                 if (playerHealth != null)
                 {
                     playerHealth.ChangeHealth(-5);
-                    Debug.Log("Fireball hit player");
-                }
-
-                PlayerMovement2 playerMovement = hit.GetComponent<PlayerMovement2>();
-                if (playerMovement != null)
-                {
-                    Vector2 knockDir = (hit.transform.position - transform.position).normalized;
-                    playerMovement.Knockback(transform, 2f, 0.5f);
+                    Debug.Log("Fire rain hit player");
                 }
             }
         }

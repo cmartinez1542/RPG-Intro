@@ -51,11 +51,10 @@ public class BossFireball : MonoBehaviour
             PlayerMovement2 playerMovement = collision.GetComponent<PlayerMovement2>();
             if (playerMovement != null)
             {
-                Vector2 knockDir = (collision.transform.position - transform.position).normalized;
-                playerMovement.Knockback(transform, 2f, 0.5f);
+                playerMovement.Knockback(transform, 5f, 0.5f);
             }
         }
-        // Destroy on any other collision
+        // Destroy on any collision
         Destroy(gameObject);
     }
 }

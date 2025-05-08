@@ -115,8 +115,8 @@ public class Boss_Movement : MonoBehaviour
                     moveSpeed *= 2.0f;
                     break;
                 }
-                // Return to active if player moves
-                if (playerSpeed > 0.1f)
+                // Return to active if player does anything
+                if (Input.anyKeyDown)
                 {
                     if (bossGotScared)
                         currentState = BossState.Scared;
@@ -188,7 +188,7 @@ public class Boss_Movement : MonoBehaviour
                     idleTimer = Mathf.PI - idleTimer;
                     break;
                 }
-
+                // debug stuff
                 Debug.DrawLine(idleCenter, moveTarget, Color.magenta); // shows where the boss wants to go from the center of the arc of sin
                 Debug.DrawRay(rayOrigin, arcDir * arcDistance, Color.yellow); // this traces the distance from boss to where it's trying to go (if any), thus showing if it's hit the wall yet
                 break;
@@ -247,8 +247,12 @@ public class Boss_Movement : MonoBehaviour
                 Instantiate(fireballPrefab, transform.position, Quaternion.identity);
                 break;
             case AttackState.RangedAttack2:
-                yield return new WaitForSeconds(rangedAttack2Time);
-                Instantiate(firerainPrefab, m_player.position, Quaternion.identity);
+                Vector3 spawnPos = new Vector3(
+                    m_player.position.x,
+                    m_player.position.y,
+                    0f
+                );
+                Instantiate(firerainPrefab, spawnPos, Quaternion.identity);
                 break;
         }
         attackState = AttackState.NotAttacking;
