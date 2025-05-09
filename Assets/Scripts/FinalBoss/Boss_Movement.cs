@@ -244,7 +244,10 @@ public class Boss_Movement : MonoBehaviour
                 break;
             case AttackState.RangedAttack:
                 yield return new WaitForSeconds(rangedAttackTime);
-                Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+                Vector2 direction = (m_player.position - transform.position).normalized;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+                fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 45f);
                 break;
             case AttackState.RangedAttack2:
                 Vector3 spawnPos = new Vector3(
