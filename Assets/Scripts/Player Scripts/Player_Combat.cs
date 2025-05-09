@@ -121,6 +121,13 @@ public class Player_Combat : MonoBehaviour
             }
 
                                 // Aplicar daño al enemigo
+                Object_Health crate = hit.GetComponent<Object_Health>();
+                if (crate != null)
+                {
+                    Debug.Log(" Obj_Health encontrado");
+                    crate.TakeDamage(damage, transform, anim);
+                }
+                
                 Enemy_Health enemy = hit.GetComponent<Enemy_Health>();
                 if (enemy != null)
                 {
