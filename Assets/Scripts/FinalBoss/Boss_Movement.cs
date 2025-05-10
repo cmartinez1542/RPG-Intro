@@ -22,6 +22,8 @@ public class Boss_Movement : MonoBehaviour
     public BossState currentState = BossState.Sleeping;
     public AttackState attackState = AttackState.NotAttacking;
 
+    private BossAnimationController animController;
+
     public Transform m_player;
     public Rigidbody2D m_playerRb;
 
@@ -34,12 +36,14 @@ public class Boss_Movement : MonoBehaviour
     public float idleWiggleSpeed = 0.25f;
 
     public float attackCheckCooldown = 3f;
-    public float minionSpawnTime = 3f;
+    public float minionSpawnTime = 2f;
     public float minionsSpawned = 4f;
     public float rangedAttackTime = 0.3f;
     public float rangedAttack2Time = 1f;
     public float meleeRange = 2.5f;
     public float longRange = 6f;
+
+    public int orcCount = 0;
 
     private Rigidbody2D rb;
     private float idleTimer;
@@ -52,11 +56,13 @@ public class Boss_Movement : MonoBehaviour
 
     public GameObject fireballPrefab;
     public GameObject firerainPrefab;
+    public GameObject orcPrefab;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bossHealth = GetComponent<BossHealth>();
+        animController = GetComponent<BossAnimationController>();
     }
 
     void FixedUpdate()
@@ -73,6 +79,7 @@ public class Boss_Movement : MonoBehaviour
                 if (distanceToPlayer < awakeDistance)
                 {
                     currentState = BossState.Awake;
+                    animController.AwakenBoss();
                 }
                 break;
 
@@ -195,32 +202,35 @@ public class Boss_Movement : MonoBehaviour
         }
 
         rb.MovePosition(Vector2.MoveTowards(rb.position, moveTarget, moveSpeed * Time.deltaTime));
+        // sprite direction
+        if (toPlayer.x < 0)
+            transform.localScale = new Vector3(-1, 1, 1); // face left
+        else if (toPlayer.x > 0)
+            transform.localScale = new Vector3(1, 1, 1);  // face right
     }
 
     void SelectAttack() // assume we are not currently attacking via gate to activate this, then pick 1 of 4 attacks
     {
-        if (distanceToPlayer >= longRange && false)
+        orcCount = GameObject.FindGameObjectsWithTag("Enemy").Length - 1;
+        if (orcCount<1 && distanceToPlayer >= longRange)
         {
             attackState = AttackState.SpawnMinions;
             StartCoroutine(DoAttack());
             return;
         }
-
-        if (distanceToPlayer <= meleeRange)
+        else if (distanceToPlayer <= meleeRange)
         {
             attackState = AttackState.MeleeAttack;
             StartCoroutine(DoAttack());
             return;
         }
-
-        if ((distanceToPlayer >= meleeRange && distanceToPlayer < longRange) || currentState == BossState.Idle)
+        else if ((distanceToPlayer >= meleeRange && distanceToPlayer < longRange) || currentState == BossState.Idle)
         {
             attackState = AttackState.RangedAttack;
             StartCoroutine(DoAttack());
             return;
         }
-
-        if (distanceToPlayer >= longRange)
+        else if (distanceToPlayer >= longRange)
         {
             attackState = AttackState.RangedAttack2;
             StartCoroutine(DoAttack());
@@ -235,14 +245,24 @@ public class Boss_Movement : MonoBehaviour
         switch (attackState)
         {
             case AttackState.SpawnMinions:
+                animController.PlaySummon();
                 yield return new WaitForSeconds(minionSpawnTime);
+                float checkDistance = 1f;
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, checkDistance, LayerMask.GetMask("Default"));
+                if (hit.collider == null)
+                    Instantiate(orcPrefab, transform.position + Vector3.right, Quaternion.identity);
+                else
+                    Instantiate(orcPrefab, transform.position - Vector3.right, Quaternion.identity);
+                animController.EndSummon();
                 break;
             case AttackState.MeleeAttack:
+                animController.PlayAttack();
                 Vector2 toPlayer = (m_player.position - transform.position).normalized;
                 rb.linearVelocity = 2f*moveSpeed*toPlayer;
                 yield return new WaitForSeconds(1f);
                 break;
             case AttackState.RangedAttack:
+                animController.PlayAttack();
                 yield return new WaitForSeconds(rangedAttackTime);
                 Vector2 direction = (m_player.position - transform.position).normalized;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -250,14 +270,37 @@ public class Boss_Movement : MonoBehaviour
                 fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 45f);
                 break;
             case AttackState.RangedAttack2:
-                Vector3 spawnPos = new Vector3(
-                    m_player.position.x,
-                    m_player.position.y,
-                    0f
-                );
+                animController.PlaySummon();
+                yield return new WaitForSeconds(rangedAttack2Time);
+                Vector3 spawnPos = new Vector3(m_player.position.x, m_player.position.y, 0f);
                 Instantiate(firerainPrefab, spawnPos, Quaternion.identity);
+                animController.EndSummon();
                 break;
         }
         attackState = AttackState.NotAttacking;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Player") && attackState == AttackState.MeleeAttack)
+        {
+            Player_Health playerHealth = collision.gameObject.GetComponent<Player_Health>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.ChangeHealth(-5);
+                Debug.Log("Boss hit player");
+            }
+            else
+                Debug.Log("Boss hit player, but health was null");
+
+            PlayerMovement2 playerMovement = collision.gameObject.GetComponent<PlayerMovement2>();
+            if (playerMovement != null)
+            {
+                playerMovement.Knockback(transform, 100f, 0.5f);
+            }
+            else
+                Debug.Log("Boss hit player, but movement was null");
+        }
     }
 }
