@@ -17770,6 +17770,7 @@ GameObject:
   - component: {fileID: 1700533172}
   - component: {fileID: 1700533174}
   - component: {fileID: 1700533173}
+  - component: {fileID: 1700533175}
   m_Layer: 3
   m_Name: Boss
   m_TagString: Enemy
@@ -17991,6 +17992,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1700533175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700533165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018dceb9372731b498b633d4a6011997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXSource: {fileID: 306846023}
+  boss_wakes_up: {fileID: 8300000, guid: 2e1e5e3774f38da44b4736b0b0d2bcad, type: 3}
+  boss_shoots_fireball: {fileID: 8300000, guid: 8f498dfa473d87e4e98e6e451452719b, type: 3}
+  fire_rain_sound: {fileID: 8300000, guid: 81605091fd221574bb064dfc52a80b56, type: 3}
+  boss_spawns_minion: {fileID: 8300000, guid: 890044567af4e9c4882d71f7abd82eb9, type: 3}
+  boss_dies: {fileID: 8300000, guid: 819679c741b28fb44868df487705e2a0, type: 3}
 --- !u!1 &1718558727
 GameObject:
   m_ObjectHideFlags: 0

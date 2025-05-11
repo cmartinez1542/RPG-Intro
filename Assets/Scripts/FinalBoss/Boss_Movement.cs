@@ -23,6 +23,7 @@ public class Boss_Movement : MonoBehaviour
     public AttackState attackState = AttackState.NotAttacking;
 
     private BossAnimationController animController;
+    private BossAudioManager bossSound;
 
     public Transform m_player;
     public Rigidbody2D m_playerRb;
@@ -63,6 +64,7 @@ public class Boss_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bossHealth = GetComponent<BossHealth>();
         animController = GetComponent<BossAnimationController>();
+        bossSound = GetComponent<BossAudioManager>();
     }
 
     void FixedUpdate()
@@ -80,6 +82,7 @@ public class Boss_Movement : MonoBehaviour
                 {
                     currentState = BossState.Awake;
                     animController.AwakenBoss();
+                    bossSound.PlayBossWakesUp();
                 }
                 break;
 
@@ -246,6 +249,7 @@ public class Boss_Movement : MonoBehaviour
         {
             case AttackState.SpawnMinions:
                 animController.PlaySummon();
+                bossSound.PlayBossSpawnsMinion();
                 yield return new WaitForSeconds(minionSpawnTime);
                 float checkDistance = 1f;
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, checkDistance, LayerMask.GetMask("Default"));
@@ -268,6 +272,7 @@ public class Boss_Movement : MonoBehaviour
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
                 fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 45f);
+                bossSound.PlayBossShootsFireball();
                 break;
             case AttackState.RangedAttack2:
                 animController.PlaySummon();
@@ -275,6 +280,7 @@ public class Boss_Movement : MonoBehaviour
                 Vector3 spawnPos = new Vector3(m_player.position.x, m_player.position.y, 0f);
                 Instantiate(firerainPrefab, spawnPos, Quaternion.identity);
                 animController.EndSummon();
+                bossSound.PlayFireRain();
                 break;
         }
         attackState = AttackState.NotAttacking;

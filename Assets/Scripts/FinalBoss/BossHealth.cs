@@ -7,11 +7,13 @@ public class BossHealth : MonoBehaviour
 
     private Rigidbody2D rb;
     private BossAnimationController animController;
+    private BossAudioManager bossSound;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animController = GetComponent<BossAnimationController>();
+        bossSound = GetComponent<BossAudioManager>();
     }
 
     public void TakeDamage(int amount)
@@ -40,5 +42,7 @@ public class BossHealth : MonoBehaviour
         if (movement != null) movement.enabled = false;
 
         if (rb != null) rb.linearVelocity = Vector2.zero;
+
+        bossSound.PlayBossDies();
     }
 }
