@@ -25,7 +25,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     // Dash Settings
     private bool canDash = true;
-    private bool isDashing;
+    public bool isDashing;
     public float dashingPower = 100f;
     private float dashingTime = 0.4f;
     private float dashingCooldown = 1f;
@@ -93,8 +93,7 @@ public class PlayerMovement2 : MonoBehaviour
     public void OnDash(InputAction.CallbackContext context)
     {
 
-        if (context.performed && canDash && !isDashing)
-        {
+        if (context.performed && canDash && !isDashing) {
             Debug.Log("Dash triggered!");
             StartCoroutine(Dash());
         }
@@ -164,8 +163,7 @@ public class PlayerMovement2 : MonoBehaviour
     }
 
 
-    IEnumerator Dash()
-    {
+    IEnumerator Dash() {
         canDash = false;
         isDashing = true;
 

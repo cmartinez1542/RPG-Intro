@@ -98,7 +98,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638810510287644305
+  platformSettingsDirtyTick: 638828484590784331
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -251,7 +251,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 236}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0.30434778, y: -2.222222}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 

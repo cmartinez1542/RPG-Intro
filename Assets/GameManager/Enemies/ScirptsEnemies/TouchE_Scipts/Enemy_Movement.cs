@@ -19,6 +19,8 @@ public class Enemy_Movement : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
 
+    private bool isTriggered = false; // To prevent multiple coroutine calls
+
     [Header("Follow Player Settings")]
     public Transform player;
     public float detectionRange = 5f;
@@ -146,6 +148,42 @@ private void FlipToFacePlayer()
 
         if (playerMovement != null)
             playerMovement.Knockback(transform, knockbackForce, stunTime);
+    }
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Player_Health playerHealth = collision.gameObject.GetComponent<Player_Health>();
+        PlayerMovement2 playerMovement = collision.gameObject.GetComponent<PlayerMovement2>();
+        
+        if (playerHealth != null)
+            playerHealth.ChangeHealth(-damage);
+
+        if (playerMovement != null)
+            playerMovement.Knockback(transform, knockbackForce, stunTime);
+    }*/
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(!isTriggered) {
+            Player_Health playerHealth = collision.gameObject.GetComponent<Player_Health>();
+            PlayerMovement2 playerMovement = collision.gameObject.GetComponent<PlayerMovement2>();
+            
+            if (playerHealth != null)
+                playerHealth.ChangeHealth(-damage);
+
+            if (playerMovement != null)
+                playerMovement.Knockback(transform, knockbackForce, stunTime);
+
+            StartCoroutine(TriggerWithDelayCoroutine());
+        }
+    }
+
+    private IEnumerator TriggerWithDelayCoroutine()
+    {
+        isTriggered = true; // Prevent re-triggering
+        yield return new WaitForSeconds(attackCooldown); // Delay by attackCooldown seconds
+        Debug.Log("Triggered after delay!");
+        isTriggered = false; // Allow re-triggering if needed
     }
 
   IEnumerator AttackPlayer()

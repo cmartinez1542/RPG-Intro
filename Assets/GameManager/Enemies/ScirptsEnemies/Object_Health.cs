@@ -12,6 +12,8 @@ public class Object_Health : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
 
+    public AudioManager audiomanager;
+
     private void Start()
     {
         
@@ -32,7 +34,7 @@ IEnumerator FlashRed()
 
 public void TakeDamage(int amount, Transform attacker, Animator animState)
 {
-    if(animState.GetBool(vulnerability)) {
+    if(animState.GetBool(vulnerability) || vulnerability == "") {
         currentHealth -= amount;
         Debug.Log("🩸 Enemigo recibió daño. Vida actual: " + currentHealth);
 
