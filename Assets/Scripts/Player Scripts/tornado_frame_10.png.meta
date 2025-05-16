@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tornado_frame_10_0: 585315925027277188
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

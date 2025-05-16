@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      tornado_frame_13_0: 7875034531040250585
+      tornado_frame_13_1: -1603194265786021981
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
