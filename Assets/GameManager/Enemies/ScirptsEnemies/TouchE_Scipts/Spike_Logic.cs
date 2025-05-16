@@ -22,8 +22,7 @@ public class Spike_Logic : MonoBehaviour
     private Rigidbody2D rb;
 
     private bool isTriggered = false; // To prevent multiple coroutine calls
-
-    public SecondAudioManager audiomanager;
+    public AudioManager audiomanager;
 
     [Header("Follow Player Settings")]
     public Transform player;
@@ -33,73 +32,33 @@ public class Spike_Logic : MonoBehaviour
 
     [Header("Stun Settinngs")]
     public SpriteRenderer spriteRenderer; // Drag your enemy's SpriteRenderer in Inspector
+    public Vector3 attackPointOffset = new Vector3(1.5f, 0f, 0f);
 
-public Vector3 attackPointOffset = new Vector3(1.5f, 0f, 0f);
-
-
-    public void PlaySoundSpike()
-    {
-        audiomanager.SpikesSound();
-     }
-
-    private void Start()
-    {
+    private void Start() {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        if (!missDashing)
-        {
-            anim.SetBool("AlwaysOut", true);
-            anim.SetBool("PlayAnimation", true);
-            audiomanager.SpikesSound();
+        if(!missDashing) { //If this is not flagged it to miss if the player dashes, then leave the spikes as up
+            anim.SetBool("AlwaysOut",true);
+            anim.SetBool("PlayAnimation",true);
         }
     }
 
-    private void Update()
-    {
-        if (player == null)
-        {
+    private void Update() {
+        if (player == null) { //If player does not exist, then find the objects with the Player label and get the closest player
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             if (players.Length > 0)
                 player = GetClosestPlayer(players).transform;
         }
     }
 
-    public void FlashWhiteBlink(float totalDuration, float blinkSpeed = 10.5f)
-    {
-        StartCoroutine(BlinkCoroutine(totalDuration, blinkSpeed));
-    }
-
-    private IEnumerator BlinkCoroutine(float totalDuration, float blinkSpeed)
-    {
-        float elapsed = 0f;
-        Color originalColor = spriteRenderer.color;
-
-        while (elapsed < totalDuration)
-        {
-            spriteRenderer.color = Color.red;
-            yield return new WaitForSeconds(blinkSpeed);
-
-            spriteRenderer.color = originalColor;
-            yield return new WaitForSeconds(blinkSpeed);
-
-            elapsed += blinkSpeed * 2;
-        }
-
-        spriteRenderer.color = originalColor; // ensure it resets
-    }
-
-
-
-    private GameObject GetClosestPlayer(GameObject[] players)
-    {
+    //Get the closest player
+    private GameObject GetClosestPlayer(GameObject[] players) {
         GameObject closest = null;
         float minDistance = Mathf.Infinity;
 
-        foreach (GameObject p in players)
-        {
+        foreach (GameObject p in players) {
             float dist = Vector2.Distance(transform.position, p.transform.position);
-            if (dist < minDistance)
-            {
+            if (dist < minDistance) {
                 minDistance = dist;
                 closest = p;
             }
@@ -108,19 +67,16 @@ public Vector3 attackPointOffset = new Vector3(1.5f, 0f, 0f);
         return closest;
     }
 
- private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         float speed = rb.linearVelocity.magnitude;
         anim.SetFloat("Speed", speed);
 
         if (isKnockedBack) return; // ⛔ No moverse si está siendo empujado
 
-        if (player != null)
-        {
+        if (player != null) {
             float distance = Vector2.Distance(transform.position, player.position);
 
-            if (distance <= detectionRange && distance > stopDistance)
-            {
+            if (distance <= detectionRange && distance > stopDistance) {
                 Vector2 direction = ((Vector2)player.position - (Vector2)transform.position).normalized;
                 rb.linearVelocity = direction * moveSpeed;
             } else if (distance <= stopDistance) {
@@ -134,61 +90,42 @@ public Vector3 attackPointOffset = new Vector3(1.5f, 0f, 0f);
         }
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
+    //Actions to do when colliding
+    private void OnCollisionEnter2D(Collision2D collision) {
         Player_Health playerHealth = collision.gameObject.GetComponent<Player_Health>();
-        PlayerMovement2 playerMovement = collision.gameObject.GetComponentInParent<PlayerMovement2>();
-        
+        PlayerMovement2 playerMovement = collision.gameObject.GetComponent<PlayerMovement2>();
 
+        //Deal damage to player if health exist
         if (playerHealth != null)
             playerHealth.ChangeHealth(-damage);
 
+        //Deal knockback to player if movement exist
         if (playerMovement != null)
             playerMovement.Knockback(transform, knockbackForce, stunTime);
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Player_Health playerHealth = collision.gameObject.GetComponent<Player_Health>();
-        PlayerMovement2 playerMovement = collision.gameObject.GetComponent<PlayerMovement2>();
-        
-        if (playerHealth != null)
-            playerHealth.ChangeHealth(-damage);
+    //Execute attack if stepped on
+    private void OnTriggerStay2D(Collider2D collision) {
+        //If it is not triggered
+        if(!isTriggered) {
+            Player_Health playerHealth = collision.gameObject.GetComponent<Player_Health>();
+            PlayerMovement2 playerMovement = collision.gameObject.GetComponent<PlayerMovement2>();
+            
+            //If this is supposed to miss on dashing and the player is dashing then dont deal damage, else do damage
+            if(!(missDashing && playerMovement.isDashing)) {
+                if (playerHealth != null)
+                    playerHealth.ChangeHealth(-damage);
 
-        if (playerMovement != null)
-            playerMovement.Knockback(transform, knockbackForce, stunTime);
-    }*/
-
-private void OnTriggerStay2D(Collider2D collision)
-{
-    if (!isTriggered)
-    {
-        Player_Health playerHealth = collision.gameObject.GetComponent<Player_Health>();
-        PlayerMovement2 playerMovement = collision.gameObject.GetComponent<PlayerMovement2>();
-
-        bool shouldDamage = true;
-
-        if (missDashing && playerMovement != null && playerMovement.isDashing)
-        {
-            shouldDamage = false;
-        }
-
-        if (playerHealth != null && shouldDamage)
-        {
-            playerHealth.ChangeHealth(-damage);
-
-            if (playerMovement != null)
-                playerMovement.Knockback(transform, knockbackForce, stunTime);
-
+                if (playerMovement != null)
+                    playerMovement.Knockback(transform, knockbackForce, stunTime);
+            }
+            //Delay the attack
             StartCoroutine(TriggerWithDelayCoroutine());
         }
     }
-}
 
-
-    private IEnumerator TriggerWithDelayCoroutine()
-    {
+    //Delay the spikes attack cooldown as to not drain the player's health
+    private IEnumerator TriggerWithDelayCoroutine() {
         isTriggered = true; // Prevent re-triggering
         anim.SetBool("PlayAnimation",true);
         yield return new WaitForSeconds(attackCooldown); // Delay by attackCooldown seconds
@@ -197,6 +134,7 @@ private void OnTriggerStay2D(Collider2D collision)
         anim.SetBool("PlayAnimation",false);
     }
 
+    //Execute the logic to attack the player
     IEnumerator AttackPlayer() {
         isAttacking = true;
 
@@ -211,80 +149,63 @@ private void OnTriggerStay2D(Collider2D collision)
         }
     }
 
-
-    public void ApplyAttackDamage()
-    {
+    //Apply damage to the player
+    public void ApplyAttackDamage() {
         Collider2D[] hits = Physics2D.OverlapCircleAll(
             attackPoint.position, weaponRange, LayerMask.GetMask("Player"));
 
         Debug.Log($"🎯 Jugadores detectados: {hits.Length}");
 
-        foreach (Collider2D hit in hits)
-        {
+        //For each collider that it collides with
+        foreach (Collider2D hit in hits) {
             Player_Health playerHealth = hit.GetComponent<Player_Health>();
             PlayerMovement2 playerMovement = hit.GetComponent<PlayerMovement2>();
 
-            if (playerHealth != null)
-            {
+            //If player has health, deal damage
+            if (playerHealth != null) {
                 playerHealth.ChangeHealth(-damage);
-                Debug.Log(" Daño aplicado al jugador.");
+                Debug.Log("✅ Daño aplicado al jugador.");
             }
 
+            //If player has movement, deal knockback
             if (playerMovement != null)
                 playerMovement.Knockback(transform, knockbackForce, stunTime);
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPoint != null)
-        {
+    //
+    private void OnDrawGizmosSelected() {
+        if (attackPoint != null) {
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(attackPoint.position, weaponRange);
+        }
+    }
+
+    //Update the direction for the attack point
+    private void UpdateAttackPointDirection() {
+        if (player == null || attackPoint == null) return;
+
+        Vector2 direction = (player.position - transform.position).normalized;
+
+        // Decidir dirección dominante (horizontal o vertical)
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y)) {
+            // Ataque horizontal (izquierda o derecha)
+            attackPoint.localPosition = new Vector3(direction.x > 0 ? 1.5f : -1.5f, 0f, 0f);
+
+            // Volteamos sprite horizontalmente
+            transform.localScale = new Vector3(direction.x > 0 ? 1 : -1, 1, 1);
+        } else {
+            // Ataque vertical (arriba o abajo)
+            attackPoint.localPosition = new Vector3(0f, direction.y > 0 ? 1.5f : -1.5f, 0f);
         }
         
     }
 
-    private void UpdateAttackPointDirection()
-{
-    if (player == null || attackPoint == null) return;
-
-    Vector2 direction = (player.position - transform.position).normalized;
-
-    // Decidir dirección dominante (horizontal o vertical)
-    if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
-    {
-        // Ataque horizontal (izquierda o derecha)
-        attackPoint.localPosition = new Vector3(direction.x > 0 ? 1.5f : -1.5f, 0f, 0f);
-
-        // Volteamos sprite horizontalmente
-        transform.localScale = new Vector3(direction.x > 0 ? 1 : -1, 1, 1);
+    //Recover from knockback
+    IEnumerator RecoverFromKnockback(float time) {
+        yield return new WaitForSeconds(time);
+        isKnockedBack = false;
     }
-    else
-    {
-        // Ataque vertical (arriba o abajo)
-        attackPoint.localPosition = new Vector3(0f, direction.y > 0 ? 1.5f : -1.5f, 0f);
-    }
-    
-}
-IEnumerator RecoverFromKnockback(float time)
-{
-    yield return new WaitForSeconds(time);
-    isKnockedBack = false;
-}
-
-
-public void ApplyKnockback(Vector2 direction, float force, float duration)
-{
-    if (rb != null)
-    {
-        isKnockedBack = true;
-        rb.AddForce(direction.normalized * force, ForceMode2D.Impulse);
-        FlashWhiteBlink((stunTime / 2), 0.3f);
-        StartCoroutine(RecoverFromKnockback(duration));
-    }
-}
 
 
 }
-
