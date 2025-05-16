@@ -31671,6 +31671,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3315596220213273371, guid: de2b104e448205441a290765affc1064, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1769211119}
+    - targetCorrespondingSourceObject: {fileID: 3315596220213273371, guid: de2b104e448205441a290765affc1064, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1769211124}
   m_SourcePrefab: {fileID: 100100000, guid: de2b104e448205441a290765affc1064, type: 3}
 --- !u!1 &967819881
 GameObject:
@@ -36915,6 +36918,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8286762185330252487, guid: d1753a6b4cfd4a84e890ddc824b5f45e, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132888399700121698, guid: d1753a6b4cfd4a84e890ddc824b5f45e, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -49192,7 +49199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthDropPrefab: {fileID: 3744771398856362147, guid: 6b5f8d4e1ba0164419580f331bcce3bb, type: 3}
   puzzleDoor: {fileID: 1744226932}
-  currentHealth: 100
+  currentHealth: 1
 --- !u!82 &1769211119
 AudioSource:
   m_ObjectHideFlags: 0
@@ -49290,6 +49297,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1769211124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769211105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58511f74d02d7d4fa282edfe8b406f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthDropPrefab: {fileID: 3744771398856362147, guid: 6b5f8d4e1ba0164419580f331bcce3bb, type: 3}
+  puzzleDoor: {fileID: 1475110591}
+  currentHealth: 0
 --- !u!1 &1769945315
 GameObject:
   m_ObjectHideFlags: 0
@@ -51620,6 +51642,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1957610899}
     m_Modifications:
+    - target: {fileID: 1851999016484660887, guid: 5d7f6a2a2346e474e88a44438c9c8415, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4230181108591323607, guid: 1bd8dc7c88776fe4aa64905b0ed6d456, type: 3}
+    - target: {fileID: 1851999016484660887, guid: 5d7f6a2a2346e474e88a44438c9c8415, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4279225312943728087, guid: 5d7f6a2a2346e474e88a44438c9c8415, type: 3}
       propertyPath: m_Name
       value: Enemyy 1
