@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossAudioManager : MonoBehaviour
 {
-    [SerializeField] AudioSource SFXSource;
+    [SerializeField] AudioSource SFXSource; // declaring all the audio clips/source
     public AudioClip boss_wakes_up;
     public AudioClip boss_shoots_fireball;
     public AudioClip fire_rain_sound;
@@ -14,7 +14,7 @@ public class BossAudioManager : MonoBehaviour
     {
     }
 
-    public void PlayBossWakesUp()
+    public void PlayBossWakesUp() // various functions to play different sounds related to the boss, they're all the same except for different sound and volume
     {
         if (boss_wakes_up != null)
         {

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 public class BossHealth : MonoBehaviour
 {
-
+    // basic declaration
     public int currentHealth;
 
     private Rigidbody2D rb;
@@ -10,24 +10,24 @@ public class BossHealth : MonoBehaviour
     private BossAudioManager bossSound;
 
     private void Start()
-    {
+    { // get some components
         rb = GetComponent<Rigidbody2D>();
         animController = GetComponent<BossAnimationController>();
         bossSound = GetComponent<BossAudioManager>();
     }
 
     public void TakeDamage(int amount)
-    {
+    { // boss got hurt, 
         currentHealth -= amount;
         Debug.Log("Boss took damage. Current health: " + currentHealth);
         StartCoroutine(Blink());
-        if (currentHealth <= 0)
+        if (currentHealth <= 0) // kill boss if low health
             Die();
         else if (animController != null)
             animController.PlayHurt();
     }
 
-       private IEnumerator Blink()
+    private IEnumerator Blink() // idk what this is or who added this ngl... don't think it works?
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr == null) yield break;
@@ -41,7 +41,7 @@ public class BossHealth : MonoBehaviour
         }
     }
 
-    private void Die()
+    private void Die() // kill boss function
     {
         Debug.Log("Boss defeated.");
 

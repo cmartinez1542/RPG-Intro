@@ -4,11 +4,11 @@ public class BossAnimationController : MonoBehaviour
 {
     private Animator animator;
 
-    void Start()
+    void Start() // find animator
     {
         animator = GetComponent<Animator>();
     }
-    public void AwakenBoss()
+    public void AwakenBoss() // various animation triggers, activated in movement or health
     {
         animator.SetTrigger("isAwake");
     }

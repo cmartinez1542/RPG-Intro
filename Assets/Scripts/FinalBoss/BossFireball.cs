@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossFireball : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 5f; // basic declarations
     public float lifetime = 5f;
 
     private Vector2 moveDirection;
@@ -10,16 +10,16 @@ public class BossFireball : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>(); // get rigid body of the fireball
 
         // Get direction to player at the time of spawn
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        if (player != null) // start fireball moving towards player
         {
             Vector2 toPlayer = (player.transform.position - transform.position).normalized;
             moveDirection = toPlayer;
         }
-        else
+        else // if player doesn't exist
         {
             moveDirection = Vector2.right; // fallback
         }
@@ -28,7 +28,7 @@ public class BossFireball : MonoBehaviour
         Destroy(gameObject, lifetime);
     }
 
-    void FixedUpdate()
+    void FixedUpdate() // update position
     {
         rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime);
     }
@@ -40,16 +40,16 @@ public class BossFireball : MonoBehaviour
             return;
         if (collision.gameObject.CompareTag("Player"))
         {
-            Player_Health playerHealth = collision.GetComponent<Player_Health>();
+            Player_Health playerHealth = collision.GetComponent<Player_Health>(); // get player health
 
-            if (playerHealth != null)
+            if (playerHealth != null) // if the player health exists then do damage
             {
                 playerHealth.ChangeHealth(-5);
                 Debug.Log("Fireball hit player");
             }
-            
-            PlayerMovement2 playerMovement = collision.GetComponent<PlayerMovement2>();
-            if (playerMovement != null)
+
+            PlayerMovement2 playerMovement = collision.GetComponent<PlayerMovement2>(); // get player movement
+            if (playerMovement != null) // if the player movement exists then do knockback
             {
                 playerMovement.Knockback(transform, 5f, 0.5f);
             }
