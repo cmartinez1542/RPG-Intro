@@ -16,10 +16,11 @@ public class Button : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        animator.SetBool("isPressed", isPressed);
+        animator.SetBool("isPressed", isPressed); //Updates animation for it it is pressed or not
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        //IF not pressed, press it and then check with the locked door if it should open yet or not
         if(!isPressed) {
             isPressed = true;
             triggerObj.GetComponent<LockedDoor>().checkButtons(seqNum);
